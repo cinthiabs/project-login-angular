@@ -7,14 +7,14 @@ import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-forgot-password',
   standalone: true,
   imports: [DefaultLoginLayoutComponent , ReactiveFormsModule, PrimaryInputComponent ],
   providers:[LoginService],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  templateUrl: './forgot-password.component.html',
+  styleUrl: './forgot-password.component.scss'
 })
-export class LoginComponent {
+export class ForgotPasswordComponent {
   loginForm!: FormGroup;
   
   constructor(
@@ -35,9 +35,6 @@ export class LoginComponent {
     })
   }
   navigate(){
-    this.router.navigate(["signup"])
-  }
-  navigateForgot(){
-    this.router.navigate(["forgot-password"])
+    this.router.navigate(["login"])
   }
 }
