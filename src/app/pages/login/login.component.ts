@@ -29,11 +29,18 @@ export class LoginComponent {
     })
   }
   submit(){
-    this.LoginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => this.toastr.success("Login feito com sucesso!"),
-      error: () => this.toastr.error("Erro inesperado! Tente novamente mais tarde!")
-    })
+    this.LoginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe
+    (response => {
+      if (response.sucesso == true) {
+        console.log(response)
+        this.toastr.success("Login feito com sucesso!")
+        this.router.navigate(["/"])
+      }else{
+       this.toastr.error("Falha no login. Por favor, verifique seu email e senha.")
+      }
+   });
   }
+
   navigate(){
     this.router.navigate(["signup"])
   }

@@ -1,21 +1,22 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginResponse } from '../types/login-response.type';
-import { tap } from 'rxjs';
+import { environment } from '../../environments/environment';
+
+import { DadosResponse, LoginResponse, RequestLogin } from '../types/login-response.type';
+import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-
+  private Url = environment.BaseUrl;
   constructor(private httpClient: HttpClient) { }
 
-  login(name: string, password: string){
-    return this.httpClient.post<LoginResponse>("/login", {name, password}).pipe(
-      tap((value) =>{
-        sessionStorage.setItem("auth-token", value.token)
-        sessionStorage.setItem("name", value.name)
-      })
-    )
+  login(email: string, password: string):Observable<DadosResponse<LoginResponse>>{
+    return this.httpClient.get<DadosResponse<LoginResponse>>(`${this.Url}/User?email=${email}&password=${password}`)
+  }
+  create(filter: RequestLogin): Observable<DadosResponse<LoginResponse>>{
+    return this.httpClient.post<DadosResponse<LoginResponse>>(`${this.Url}/User`, filter)
   }
 }
+
