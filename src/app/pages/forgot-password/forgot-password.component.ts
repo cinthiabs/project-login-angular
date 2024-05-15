@@ -24,15 +24,24 @@ export class ForgotPasswordComponent {
 
   ){
     this.loginForm = new FormGroup({
-      email: new FormControl('',[Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+      email: new FormControl('',[Validators.required, Validators.email])
     })
   }
   submit(){
-    this.LoginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => this.toastr.success("Login feito com sucesso!"),
-      error: () => this.toastr.error("Erro inesperado! Tente novamente mais tarde!")
-    })
+    this.LoginService.sendEmail(this.loginForm.value.email).subscribe(response => {
+      console.log(response)
+      if (response.sucesso == true) {
+        this.toastr.success("E-mail enviado com sucesso!")
+      }
+      if (response.sucesso == false && response.mensagem =='Email não cadastrado!')
+      {
+        this.toastr.error("E-mail não cadastrado!")
+      }
+      if(response.sucesso == false && response.mensagem == 'Erro ao enviar o e-mail')
+      {
+       this.toastr.error("Falha ao enviar o e-mail. Por favor, tente novamente mais tarde.")
+      }
+   });
   }
   navigate(){
     this.router.navigate(["login"])

@@ -18,5 +18,11 @@ export class LoginService {
   create(filter: RequestLogin): Observable<DadosResponse<LoginResponse>>{
     return this.httpClient.post<DadosResponse<LoginResponse>>(`${this.Url}/User`, filter)
   }
+  update(filter: RequestLogin): Observable<DadosResponse<LoginResponse>>{
+    return this.httpClient.post<DadosResponse<LoginResponse>>(`${this.Url}/User/Update`, filter)
+  }
+  sendEmail(email: string): Observable<any>{
+    return this.httpClient.post<any>(`${this.Url}/User/SendEmail?email=${email}`,email )
+  }
 }
 

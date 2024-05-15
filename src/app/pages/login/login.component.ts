@@ -32,7 +32,6 @@ export class LoginComponent {
     this.LoginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe
     (response => {
       if (response.sucesso == true) {
-        console.log(response)
         this.toastr.success("Login feito com sucesso!")
         this.router.navigate(["/"])
       }else{

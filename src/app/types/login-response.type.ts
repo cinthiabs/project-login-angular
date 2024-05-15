@@ -14,7 +14,7 @@ export interface DadosResponse<T> {
     sucesso: boolean;
 }
 export interface RequestLogin{
-    nome: string;
+    nome?: string;
     email: string;
     senha: string;
     confirmarSenha: string;
