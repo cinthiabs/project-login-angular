@@ -28,6 +28,8 @@ export class PrimaryInputComponent  implements ControlValueAccessor {
   value: string =''
   onChange: any =  () => {}
   onTouched: any =  () => {}
+  hidePassword: boolean = true;
+
 
   onInput(event: Event){
     const value = (event.target as HTMLInputElement).value
@@ -44,4 +46,5 @@ export class PrimaryInputComponent  implements ControlValueAccessor {
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
+
 }

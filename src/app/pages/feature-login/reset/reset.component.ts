@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { DefaultLoginLayoutComponent } from '../../components/default-login-layout/default-login-layout.component';
+import { DefaultLoginLayoutComponent } from '../../../components/default-login-layout/default-login-layout.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
+import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
-import { RequestLogin } from '../../types/login-response.type';
+import { RequestLogin } from '../../../types/login-response.type';
 
 interface ResetForm {
   name: FormControl,

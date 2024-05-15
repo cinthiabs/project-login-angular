@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { DefaultLoginLayoutComponent } from '../../components/default-login-layout/default-login-layout.component';
+import { DefaultLoginLayoutComponent } from '../../../components/default-login-layout/default-login-layout.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
+import { PrimaryInputComponent } from '../../../components/primary-input/primary-input.component';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -28,12 +28,13 @@ export class LoginComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
+
   submit(){
     this.LoginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe
     (response => {
       if (response.sucesso == true) {
         this.toastr.success("Login feito com sucesso!")
-        this.router.navigate(["/"])
+        this.router.navigate(["/home"])
       }else{
        this.toastr.error("Falha no login. Por favor, verifique seu email e senha.")
       }

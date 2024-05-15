@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
-import { SignupComponent } from './pages/signup/signup.component';
-import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
-import { ResetComponent } from './pages/reset/reset.component';
+import { LoginComponent } from './pages/feature-login/login/login.component';
+import { SignupComponent } from './pages/feature-login/signup/signup.component';
+import { ForgotPasswordComponent } from './pages/feature-login/forgot-password/forgot-password.component';
+import { ResetComponent } from './pages/feature-login/reset/reset.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
     {   path: '',
@@ -24,5 +25,9 @@ export const routes: Routes = [
     {
         path:"reset/:user",
         component: ResetComponent
+    },
+    {
+        path:"home",
+        component: HomeComponent
     }
 ];
