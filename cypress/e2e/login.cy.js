@@ -5,7 +5,6 @@ describe('Login', () => {
   })
   
   it('Valite element on Login', () => {
-    cy.visit('/')
 
     cy.get('h2').contains('Login into your account')
     cy.get('[formcontrolname="email"] > .input-wrapper > .input-content > input')
@@ -18,7 +17,6 @@ describe('Login', () => {
 
   })
   it('Login - Incorrect', () => {
-    cy.visit('/')
 
     cy.get('[formcontrolname="email"] > .input-wrapper > .input-content > input')
       .type('cinthiaaaaaaaaaaaaaa')
@@ -30,8 +28,7 @@ describe('Login', () => {
 
 
   })
-  it('Login - Correct with email  and passwprd incorret', () => {
-    cy.visit('/')
+  it('Login - Correct with email  and password incorret', () => {
 
     cy.get('[formcontrolname="email"] > .input-wrapper > .input-content > input')
       .type('cinthiabarbosa@gmail.com')
@@ -42,12 +39,10 @@ describe('Login', () => {
     cy.get('.btn-primary').should('not.be.disabled')
     cy.get('.btn-primary').click()
     cy.get('.ng-trigger').should('contain','Falha no login. Por favor, verifique seu email e senha.')
-    
 
   })
   
   it('Login - Correct', () => {
-    cy.visit('/')
 
     cy.get('[formcontrolname="email"] > .input-wrapper > .input-content > input')
       .type('maria@gmail.com')
@@ -60,10 +55,43 @@ describe('Login', () => {
     cy.get('.ng-trigger').should('contain','Login feito com sucesso!')
   })
 })
+describe('Forgot password?', () => {
+  beforeEach(()=> {
+    cy.visit('/')
+  })
+  it('Valite element on Password', () => {
 
+    cy.get('form.ng-untouched > span').should('contain','Forgot password?').click()
+    cy.get('h2').contains('Reset your password')
+    cy.get('.btn-primary').should('contain','Send an email')
+  })
+  it('Send an email', () => {
+    cy.get('form.ng-untouched > span').should('contain','Forgot password?').click()
+
+    cy.get('[formcontrolname="email"] > .input-wrapper > .input-content > input')
+     .type('cinthia123@cinthia.com')
+
+    cy.get('.btn-primary').should('not.be.disabled')
+    cy.get('.btn-primary').click()
+    cy.get('.ng-trigger').should('contain','E-mail não cadastrado!')
+
+
+    cy.get('[formcontrolname="email"] > .input-wrapper > .input-content > input').clear()
+     .type('cinthiabarbosa8d@outlook.com')
+
+    cy.get('.btn-primary').should('not.be.disabled')
+    cy.get('.btn-primary').click()
+    cy.get('.ng-trigger').should('contain','E-mail enviado com sucesso!')
+
+  })
+ 
+
+  })
 describe('Signup', () => {
-  it.only('Valite element on Signup', () => {
-
+  beforeEach(()=> {
+    cy.visit('/')
+  })
+  it('Valite element on Signup', () => {
       cy.get('.btn-secondary').click()
      
       cy.get('h2').contains('Sign in and start today!')
@@ -82,8 +110,6 @@ describe('Signup', () => {
       cy.get('.btn-primary').should('have.attr', 'disabled')
       cy.get('.btn-primary').contains('Signup Now')
       cy.get('.btn-secondary').contains('Login Now')
-  
-  
     })
 
 
